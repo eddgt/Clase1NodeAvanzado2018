@@ -1,30 +1,18 @@
-require("dotenv").config();
+require('dotenv').config();
 
-const hapi = require("hapi");
+const hapi = require('hapi');
+// Registro de routes en el server
+const Routes = require('./routes/routes');
 
 const server = new hapi.Server();
 
 server.connection({ port: 9090 });
-//Defino ruta
-server.route({
-  method: "GET",
-  path: "/",
-  handler: (request, reply) => {
-    reply({ data: "Hola mundo XD, Clase #1 curso BDG Node.js Avanzado!" });
-  }
-});
 
-server.route({
-  method: 'GET',
-  path: '/{name}',
-  handler: (request, h) => {
+// Defino ruta
+server.route(Routes.rutas);
 
-      h.response ('Hello, ' + encodeURIComponent(request.params.name) + '!, glad to meet you :)');
-  }
-});
-
-//Levanto server
-server.start(err => {
+// Levanto server
+server.start((err) => {
   if (err) throw err;
   console.log(`Servidor levantado en: ${server.info.uri}`);
 });
