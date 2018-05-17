@@ -10,7 +10,7 @@ server.route({
   method: "GET",
   path: "/",
   handler: (request, reply) => {
-    reply({ data: "Hola mundo XD" });
+    reply({ data: "Hola mundo XD, Clase #1 curso BDG Node.js Avanzado!" });
   }
 });
 
@@ -19,7 +19,7 @@ server.route({
   path: '/{name}',
   handler: (request, h) => {
 
-      h.response ('Hello, ' + encodeURIComponent(request.params.name) + '!');
+      h.response ('Hello, ' + encodeURIComponent(request.params.name) + '!, glad to meet you :)');
   }
 });
 
