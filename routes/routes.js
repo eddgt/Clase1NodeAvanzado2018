@@ -1,20 +1,21 @@
+// importamos modulo handler creado en lib/handler
+const Handlers = require('../lib/handler');
+
 module.exports = {
   rutas: [
     {
       method: 'GET',
       path: '/',
       config: {
-        handler: (request, reply) => reply({ data: 'Hola mundo' }),
+        // handler: (request, reply) => reply({ data: 'Hola mundo' }),
+        handler: Handlers.indexHand,
       },
     },
     {
       method: 'POST',
       path: '/',
       config: {
-        handler: (request, reply) => {
-          const miJson = request.payload;
-          return reply({ miJson });
-        },
+        handler: Handlers.postHand,
       },
     },
   ],

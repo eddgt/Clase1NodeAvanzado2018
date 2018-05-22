@@ -16,3 +16,5 @@ server.start((err) => {
   if (err) throw err;
   console.log(`Servidor levantado en: ${server.info.uri}`);
 });
+
+module.exports = server;
