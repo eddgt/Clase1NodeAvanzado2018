@@ -6,7 +6,12 @@ const Routes = require('./routes/routes');
 
 const server = new hapi.Server();
 
-server.connection({ port: 9090 });
+// como llamar variables de ambiente
+const serverPort = process.env[`PORT_${process.env.NODE_ENV.toUpperCase()}`];
+
+console.log(`PORT_${process.env.NODE_ENV.toUpperCase()}`);
+console.log(serverPort);
+server.connection({ port: serverPort });
 
 // Defino ruta
 server.route(Routes.rutas);
@@ -17,4 +22,5 @@ server.start((err) => {
   console.log(`Servidor levantado en: ${server.info.uri}`);
 });
 
+// exportar nuestro server
 module.exports = server;

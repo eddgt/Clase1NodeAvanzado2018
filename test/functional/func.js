@@ -10,27 +10,33 @@ exports.lab = lab;
 
 const { describe, it, after } = lab;
 
-const test = require('../../lib/handler');
+const server = require('../../app');
+
+const body = {
+  par1: 'mi parametro 1',
+  par2: 'mi parametro 2',
+};
 
 // *** para hacer pruebas unitarias debe haberse programado modularmente
 // si programamos tod modularmente, en las pruebas no deberian haber problemas
-describe('Primera prueba unitaria', () => {
+describe('Primera prueba funcional', () => {
   // it indica inicio de mis pruebas
-  it('Suma de dos numeros', (done) => {
-    const n1 = 9;
-    const n2 = 5;
-    const result = test.testF(n1, n2);
-
-    expect(result).to.be.equal(n1 + n2);
-    done();
-  });
-
-  it('Suma de dos numeros que no dan resultado igual a result ', (done) => {
-    const n1 = 9;
-    const n2 = 5;
-    const result = test.testF(n1, n2);
-
-    expect(result).not.to.be.equal(n1 + 9);
+  it('Prueba POST /', (done) => {
+    server.inject(
+      {
+        method: 'POST',
+        url: '/',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        payload: body,
+      },
+      (res) => {
+        console.log(res.result);
+        expect(res.result.parametros).to.be.exist();
+        expect(res.result.parametros.par1).to.be.equal('mi parametro 1');
+      },
+    );
     done();
   });
 
