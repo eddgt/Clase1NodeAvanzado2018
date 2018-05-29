@@ -5,12 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "node node_modules/lab/bin/lab -v -l -C",
-    "start": "node app.js"
+    "start": "nodemon app.js"
   },
   "dependencies": {
     "dotenv": "5.0.1",
     "hapi": "16.6.2",
-    "nodemon": "^1.17.4"
+    "nodemon": "^1.17.4",
+    "hapi-ioredis": "3.0.0"
   },
   "devDependencies": {
     "code": "3.0.1",
